@@ -31,15 +31,23 @@ class NewVisiorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: Pray Tahajjud)' for row in rows), 'New to-do item did not appear in the table')
+        self.assertIn('1: Pray Tahajjud', [row.text for row in rows])
 
 
         # There is still a text bo inviting him to add another item.He enters 'Do some ironing' (Lanre likes to wear properly-ironed shirts to his day work) 
-        self.fail('Finish the test!')
+        inputbox.send_keys('Do some ironing')
+        # When he hits enter, the page updates, and now te page lists
+        #'1: 'Do some ironing' as an item in a to-do list
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # The page updates again and he can now see both of his items on the list
-
+        table = self.browser.find_element_by_id("id_list_table")
+        rows = table.find_element_by_tag_name('tr')
+        self.assertIn('1: Pray Tahajjud', [row.text for row in rows])
+        self.assertIn('2: Do some ironing', [row.text for row in rows])
         # Lanre wonders whether the site will remember his list. Then he aees that the ssite has generaated a unique url for him
+        self.fail('Finish the test!')
 
         # He visits the url - his to-do list is still there
 
@@ -48,5 +56,3 @@ class NewVisiorTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
-
-
