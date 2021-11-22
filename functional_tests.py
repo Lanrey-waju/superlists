@@ -45,8 +45,8 @@ class NewVisiorTest(unittest.TestCase):
         time.sleep(1)
 
         # The page updates again and he can now see both of his items on the list
-        self.check_for_row_in_list_table('!: Pray Tahajjud')
-        self.check_for_row_in_list_table('!: Do some ironing')
+        self.check_for_row_in_list_table('1: Pray Tahajjud')
+        self.check_for_row_in_list_table('2: Do some ironing')
         # Lanre wonders whether the site will remember his list. Then he aees that the ssite has generaated a unique url for him
         self.fail('Finish the test!')
 
